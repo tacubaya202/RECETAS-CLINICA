@@ -1,559 +1,74 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RECETAS-CLINICA</title>
 <style>
-:root {
-  --navy:#172b46;
-  --gold:#c6a568;
-  --bg:#f4f6f9;
-  --white:#fff;
-  --muted:#718096;
-  --border:#e1e6ed;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0; font-family:Arial,sans-serif;
-  background:var(--bg); color:#253449;
-}
-header {
-  background:var(--navy); color:white;
-  padding:22px 26px; border-bottom:4px solid var(--gold);
-}
-.brand { font-size:22px; letter-spacing:1.5px; font-weight:bold; }
-.subtitle { color:#d9dfeb; margin-top:7px; font-size:13px; }
-nav {
-  display:flex; flex-wrap:wrap; gap:8px;
-  padding:16px 24px; background:white;
-  border-bottom:1px solid var(--border);
-}
-button, .tab {
-  cursor:pointer; border:0; border-radius:8px;
-  padding:11px 15px; font-weight:600; font-size:14px;
-}
-.tab { background:#edf0f5; color:var(--navy); }
-.tab.active { background:var(--navy); color:white; }
-main { max-width:1120px; margin:26px auto; padding:0 18px 50px; }
-h1 { font-size:25px; margin:0 0 8px; }
-h2 { font-size:17px; margin-top:0; }
-.muted { color:var(--muted); font-size:13px; line-height:1.5; }
-.panel {
-  background:white; border:1px solid var(--border);
-  border-radius:14px; padding:22px; margin-top:18px;
-  box-shadow:0 3px 12px #182b4610;
-}
-.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
-label { display:block; font-size:13px; font-weight:bold; margin-bottom:7px; }
-input, textarea, select {
-  width:100%; padding:12px; border:1px solid #ccd5e1;
-  border-radius:8px; font:inherit; background:white; color:#253449;
-}
-textarea { min-height:80px; resize:vertical; }
-.field { margin-bottom:16px; }
-.primary { background:var(--navy); color:white; }
-.gold { background:var(--gold); color:#172b46; }
-.secondary { background:#edf0f5; color:var(--navy); }
-.danger { background:#fff0f0; color:#a52a2a; }
-.small { padding:7px 10px; font-size:12px; }
-.actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
-.checklist { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
-.checkitem {
-  display:flex; gap:9px; align-items:center; padding:10px;
-  border:1px solid var(--border); border-radius:8px;
-  font-size:14px; font-weight:normal; margin:0;
-}
-.checkitem input { width:auto; }
-.hidden { display:none !important; }
-.statgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; }
-.stat { background:white; border:1px solid var(--border); border-radius:12px; padding:18px; }
-.stat strong { display:block; font-size:25px; color:var(--navy); margin-top:8px; }
-.item { padding:14px 0; border-bottom:1px solid var(--border); }
-.item:last-child { border-bottom:0; }
-.itemhead { display:flex; justify-content:space-between; gap:12px; align-items:center; }
-.pill { background:#edf0f5; border-radius:20px; padding:5px 9px; font-size:11px; }
-hr { border:0; border-top:1px solid var(--border); margin:18px 0; }
-footer { text-align:center; padding:24px; color:var(--muted); font-size:12px; }
-.notice { background:#fff8e8; border:1px solid #ead6a8; border-radius:9px; padding:12px; font-size:13px; line-height:1.5; }
-@media(max-width:650px) {
-  .grid,.checklist { grid-template-columns:1fr; }
-  .statgrid { grid-template-columns:1fr; }
-  header { padding:19px; }
-  nav { padding:12px; }
-  main { margin-top:20px; }
-  .panel { padding:16px; }
-}
-@media print {
-  body { background:white; }
-  header, nav, main, footer { display:none !important; }
-  #printArea { display:block !important; color:#111; font:12pt Arial; padding:10mm; }
-  #printArea h1 { font-size:19pt; text-align:center; }
-  #printArea .printline { border-bottom:1px solid #999; padding:8px 0; }
-  #printArea .printbody { white-space:pre-wrap; line-height:1.6; }
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="brand">RECETAS-CLINICA</div>
-  <div class="subtitle">Gestión de recetas y órdenes de laboratorio</div>
-</header>
-
-<nav>
-  <button class="tab active" data-view="inicio">Inicio</button>
-  <button class="tab" data-view="recetas">Recetas</button>
-  <button class="tab" data-view="laboratorio">Órdenes de laboratorio</button>
-  <button class="tab" data-view="paquetes">Productos y paquetes</button>
-  <button class="tab" data-view="registro">Registro de documentos</button>
-</nav>
-
+:root{--navy:#172b46;--gold:#c6a568;--bg:#f4f6f9;--white:#fff;--muted:#718096;--border:#e1e6ed}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#253449}header{background:var(--navy);color:white;padding:22px 26px;border-bottom:4px solid var(--gold)}.brand{font-size:22px;letter-spacing:1.5px;font-weight:bold}.subtitle{color:#d9dfeb;margin-top:7px;font-size:13px}nav{display:flex;flex-wrap:wrap;gap:8px;padding:16px 24px;background:white;border-bottom:1px solid var(--border)}button,.tab{cursor:pointer;border:0;border-radius:8px;padding:11px 15px;font-weight:600;font-size:14px}.tab{background:#edf0f5;color:var(--navy)}.tab.active{background:var(--navy);color:white}main{max-width:1120px;margin:26px auto;padding:0 18px 50px}h1{font-size:25px;margin:0 0 8px}h2{font-size:17px;margin-top:0}h3{font-size:15px}.muted{color:var(--muted);font-size:13px;line-height:1.5}.panel{background:white;border:1px solid var(--border);border-radius:14px;padding:22px;margin-top:18px;box-shadow:0 3px 12px #182b4610}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}label{display:block;font-size:13px;font-weight:bold;margin-bottom:7px}input,textarea,select{width:100%;padding:12px;border:1px solid #ccd5e1;border-radius:8px;font:inherit;background:white;color:#253449}textarea{min-height:80px;resize:vertical}.field{margin-bottom:16px}.primary{background:var(--navy);color:white}.gold{background:var(--gold);color:#172b46}.secondary{background:#edf0f5;color:var(--navy)}.danger{background:#fff0f0;color:#a52a2a}.small{padding:7px 10px;font-size:12px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.checkitem{display:flex;gap:9px;align-items:center;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-weight:normal;margin:0}.checkitem input{width:auto}.hidden{display:none!important}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.stat{background:white;border:1px solid var(--border);border-radius:12px;padding:18px}.stat strong{display:block;font-size:25px;color:var(--navy);margin-top:8px}.item{padding:14px 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}.itemhead{display:flex;justify-content:space-between;gap:12px;align-items:center}.pill{background:#edf0f5;border-radius:20px;padding:5px 9px;font-size:11px}hr{border:0;border-top:1px solid var(--border);margin:18px 0}footer{text-align:center;padding:24px;color:var(--muted);font-size:12px}.notice{background:#fff8e8;border:1px solid #ead6a8;border-radius:9px;padding:12px;font-size:13px;line-height:1.5}.product-rx{border:1px solid var(--border);padding:16px;border-radius:10px;margin:12px 0;background:#fbfcfe}.product-rx h3{margin:0 0 12px}.educational{border:1px solid #d8dee8;border-left:4px solid var(--gold);border-radius:8px;padding:14px;margin:12px 0;break-inside:avoid}.education-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.education-box{border:1px solid #dfe4ec;border-radius:7px;padding:10px}.education-box h4{margin:0 0 6px;font-size:12px;color:var(--navy)}.education-box p{margin:0;font-size:11pt;line-height:1.4;white-space:pre-wrap}.hint{font-size:12px;color:var(--muted);margin-top:5px}.subhead{margin:20px 0 10px;color:var(--navy)}
+@media(max-width:650px){.grid,.grid3,.checklist,.education-grid{grid-template-columns:1fr}.statgrid{grid-template-columns:1fr}header{padding:19px}nav{padding:12px}main{margin-top:20px}.panel{padding:16px}}
+@media print{@page{size:auto;margin:14mm}body{background:white}header,nav,main,footer{display:none!important}#printArea{display:block!important;color:#111;font:11pt Arial;padding:0}#printArea h1{font-size:19pt;text-align:center;margin-bottom:6px}#printArea h2{font-size:14pt}#printArea .printline{border-bottom:1px solid #aaa;padding:7px 0;line-height:1.45}#printArea .printbody{white-space:pre-wrap;line-height:1.5}#printArea .page-break{break-before:page;page-break-before:always}#printArea .educational{break-inside:avoid;border:1px solid #aaa;border-left:4px solid #777}#printArea .education-box{break-inside:avoid}#printArea .education-box p{font-size:10pt}#printArea .printline,#printArea .printbody{overflow-wrap:anywhere}}
+</style></head><body>
+<header><div class="brand">RECETAS-CLINICA</div><div class="subtitle">Gestión de recetas y órdenes de laboratorio</div></header>
+<nav><button class="tab active" data-view="inicio">Inicio</button><button class="tab" data-view="recetas">Recetas</button><button class="tab" data-view="laboratorio">Órdenes de laboratorio</button><button class="tab" data-view="paquetes">Productos y paquetes</button><button class="tab" data-view="registro">Registro de documentos</button></nav>
 <main>
-  <section id="inicio" class="view">
-    <h1>Centro de documentos</h1>
-    <p class="muted">Bienvenida. Administra tus documentos desde un solo lugar.</p>
-    <div class="statgrid">
-      <div class="stat">Recetas guardadas<strong id="countRecipes">0</strong></div>
-      <div class="stat">Órdenes de laboratorio<strong id="countLabs">0</strong></div>
-      <div class="stat">Paquetes guardados<strong id="countPackages">0</strong></div>
-    </div>
-    <div class="panel">
-      <h2>Accesos rápidos</h2>
-      <div class="actions">
-        <button class="primary" onclick="newDocument('receta')">+ Nueva receta</button>
-        <button class="gold" onclick="newDocument('laboratorio')">+ Nueva orden de laboratorio</button>
-        <button class="secondary" onclick="showView('registro')">Consultar registro</button>
-      </div>
-    </div>
-    <div class="panel">
-      <h2>Importante sobre esta primera versión</h2>
-      <div class="notice">Por ahora, los datos se guardan en este navegador. Todavía no se sincronizan entre dispositivos. Conectaremos Supabase antes de usar el sistema como registro compartido de la clínica.</div>
-    </div>
-  </section>
-
-  <section id="recetas" class="view hidden">
-    <h1>Recetas</h1>
-    <p class="muted">Crea, guarda, edita e imprime recetas.</p>
-    <div class="panel">
-      <form id="documentForm">
-        <input type="hidden" id="docId">
-        <input type="hidden" id="docType" value="receta">
-        <div class="grid">
-          <div class="field">
-            <label for="patient">Nombre del paciente</label>
-            <input id="patient" required placeholder="Escribe el nombre completo">
-          </div>
-          <div class="field">
-            <label for="docDate">Fecha del documento</label>
-            <input id="docDate" type="date" required>
-          </div>
-        </div>
-        <div class="field">
-          <label>Productos guardados</label>
-          <div id="productChoices" class="checklist"></div>
-        </div>
-        <div class="field">
-          <label for="recipePackage">Agregar un paquete guardado</label>
-          <div class="grid">
-            <select id="recipePackage"><option value="">Selecciona un paquete</option></select>
-            <button class="secondary" type="button" onclick="applyPackage('receta')">Agregar paquete</button>
-          </div>
-        </div>
-        <div class="field">
-          <label for="recipeText">Indicaciones y contenido de la receta</label>
-          <textarea id="recipeText" placeholder="Escribe las indicaciones autorizadas por el profesional responsable."></textarea>
-        </div>
-        <div class="field">
-          <label for="recipeNotes">Notas internas (no se imprimen)</label>
-          <textarea id="recipeNotes" placeholder="Notas de organización opcionales"></textarea>
-        </div>
-        <div class="actions">
-          <button class="primary" type="submit">Guardar receta</button>
-          <button class="gold" type="button" onclick="printCurrent()">Imprimir receta</button>
-          <button class="secondary" type="button" onclick="resetDocument()">Limpiar formulario</button>
-        </div>
-      </form>
-    </div>
-    <div class="panel">
-      <h2>Recetas recientes</h2>
-      <div id="recipeList"></div>
-    </div>
-  </section>
-
-  <section id="laboratorio" class="view hidden">
-    <h1>Órdenes de laboratorio</h1>
-    <p class="muted">Selecciona estudios individuales o un perfil guardado.</p>
-    <div class="panel">
-      <form id="labForm">
-        <input type="hidden" id="labId">
-        <div class="grid">
-          <div class="field">
-            <label for="labPatient">Nombre del paciente</label>
-            <input id="labPatient" required placeholder="Escribe el nombre completo">
-          </div>
-          <div class="field">
-            <label for="labDate">Fecha de la orden</label>
-            <input id="labDate" type="date" required>
-          </div>
-        </div>
-        <div class="field">
-          <label>Estudios disponibles</label>
-          <div id="studyChoices" class="checklist"></div>
-        </div>
-        <div class="field">
-          <label for="labPackage">Agregar un perfil guardado</label>
-          <div class="grid">
-            <select id="labPackage"><option value="">Selecciona un perfil</option></select>
-            <button class="secondary" type="button" onclick="applyPackage('laboratorio')">Agregar perfil</button>
-          </div>
-        </div>
-        <div class="field">
-          <label for="labNotes">Indicaciones de toma o notas de la orden</label>
-          <textarea id="labNotes" placeholder="Escribe indicaciones pertinentes"></textarea>
-        </div>
-        <div class="actions">
-          <button class="primary" type="submit">Guardar orden</button>
-          <button class="gold" type="button" onclick="printCurrent()">Imprimir orden</button>
-          <button class="secondary" type="button" onclick="resetDocument()">Limpiar formulario</button>
-        </div>
-      </form>
-    </div>
-    <div class="panel">
-      <h2>Órdenes recientes</h2>
-      <div id="labList"></div>
-    </div>
-  </section>
-
-  <section id="paquetes" class="view hidden">
-    <h1>Productos, estudios y paquetes</h1>
-    <p class="muted">Administra catálogos y combinaciones reutilizables.</p>
-    <div class="panel">
-      <h2>Agregar producto o estudio</h2>
-      <div class="grid">
-        <div class="field">
-          <label for="catalogType">Tipo</label>
-          <select id="catalogType"><option value="producto">Producto para receta</option><option value="estudio">Estudio de laboratorio</option></select>
-        </div>
-        <div class="field">
-          <label for="catalogName">Nombre</label>
-          <input id="catalogName" placeholder="Nombre del producto o estudio">
-        </div>
-      </div>
-      <button class="primary" onclick="addCatalogItem()">Agregar al catálogo</button>
-      <hr>
-      <h2>Catálogo actual</h2>
-      <div id="catalogList"></div>
-    </div>
-    <div class="panel">
-      <h2>Crear paquete o perfil</h2>
-      <div class="grid">
-        <div class="field">
-          <label for="packageType">Tipo de paquete</label>
-          <select id="packageType"><option value="receta">Paquete para receta</option><option value="laboratorio">Perfil de laboratorio</option></select>
-        </div>
-        <div class="field">
-          <label for="packageName">Nombre del paquete</label>
-          <input id="packageName" placeholder="Ej. Paquete de productos A">
-        </div>
-      </div>
-      <div class="field">
-        <label>Selecciona sus componentes</label>
-        <div id="packageChoices" class="checklist"></div>
-      </div>
-      <button class="primary" onclick="savePackage()">Guardar paquete</button>
-      <hr>
-      <h2>Paquetes guardados</h2>
-      <div id="packageList"></div>
-    </div>
-  </section>
-
-  <section id="registro" class="view hidden">
-    <h1>Registro de documentos</h1>
-    <p class="muted">Busca, edita y reimprime documentos guardados en este navegador.</p>
-    <div class="panel">
-      <div class="grid">
-        <div class="field">
-          <label for="searchText">Buscar por nombre del paciente</label>
-          <input id="searchText" placeholder="Escribe para buscar">
-        </div>
-        <div class="field">
-          <label for="searchType">Tipo de documento</label>
-          <select id="searchType"><option value="todos">Todos</option><option value="receta">Recetas</option><option value="laboratorio">Órdenes de laboratorio</option></select>
-        </div>
-      </div>
-      <div id="registryList"></div>
-    </div>
-  </section>
-</main>
-
-<div id="printArea" style="display:none"></div>
-<footer>RECETAS-CLINICA · Herramienta de gestión documental</footer>
-
+<section id="inicio" class="view"><h1>Centro de documentos</h1><p class="muted">Administra tus documentos desde un solo lugar.</p><div class="statgrid"><div class="stat">Recetas guardadas<strong id="countRecipes">0</strong></div><div class="stat">Órdenes de laboratorio<strong id="countLabs">0</strong></div><div class="stat">Paquetes guardados<strong id="countPackages">0</strong></div></div><div class="panel"><h2>Accesos rápidos</h2><div class="actions"><button class="primary" onclick="newDocument('receta')">+ Nueva receta</button><button class="gold" onclick="newDocument('laboratorio')">+ Nueva orden de laboratorio</button><button class="secondary" onclick="showView('registro')">Consultar registro</button></div></div><div class="panel"><h2>Importante</h2><div class="notice">Esta versión guarda información en el almacenamiento local de este navegador; todavía no sincroniza entre dispositivos. Antes de usarla con datos reales de pacientes, configura almacenamiento seguro, acceso autorizado y respaldos. Revisa profesionalmente cada indicación antes de imprimirla.</div></div></section>
+<section id="recetas" class="view hidden"><h1>Recetas</h1><p class="muted">Selecciona productos y personaliza las indicaciones para cada paciente. La duración inicial es de 12 semanas y puedes modificarla.</p><div class="panel"><form id="documentForm"><input type="hidden" id="docId"><input type="hidden" id="docType" value="receta"><div class="grid"><div class="field"><label for="patient">Nombre del paciente</label><input id="patient" required placeholder="Nombre completo"></div><div class="field"><label for="docDate">Fecha del documento</label><input id="docDate" type="date" required></div></div><div class="field"><label>Productos del catálogo</label><div id="productChoices" class="checklist"></div></div><div class="field"><label for="recipePackage">Agregar paquete guardado</label><div class="grid"><select id="recipePackage"><option value="">Selecciona un paquete</option></select><button class="secondary" type="button" onclick="applyPackage('receta')">Agregar paquete</button></div></div><h2 class="subhead">Indicaciones individualizadas por producto</h2><p class="muted">Al seleccionar un producto aparecerán sus campos. La ficha del catálogo no cambia cuando personalizas una receta.</p><div id="prescriptionEditors"></div><div class="field"><label for="recipeText">Indicaciones adicionales de la receta (opcional)</label><textarea id="recipeText" placeholder="Notas adicionales autorizadas por el profesional responsable"></textarea></div><div class="field"><label for="recipeNotes">Notas internas (no se imprimen)</label><textarea id="recipeNotes" placeholder="Notas de organización opcionales"></textarea></div><div class="actions"><button class="primary" type="submit">Guardar receta</button><button class="gold" type="button" onclick="printCurrent()">Imprimir receta y hojas educativas</button><button class="secondary" type="button" onclick="resetDocument()">Limpiar formulario</button></div></form></div><div class="panel"><h2>Recetas recientes</h2><div id="recipeList"></div></div></section>
+<section id="laboratorio" class="view hidden"><h1>Órdenes de laboratorio</h1><p class="muted">Selecciona estudios individuales o un perfil guardado.</p><div class="panel"><form id="labForm"><input type="hidden" id="labId"><div class="grid"><div class="field"><label for="labPatient">Nombre del paciente</label><input id="labPatient" required placeholder="Nombre completo"></div><div class="field"><label for="labDate">Fecha de la orden</label><input id="labDate" type="date" required></div></div><div class="field"><label>Estudios disponibles</label><div id="studyChoices" class="checklist"></div></div><div class="field"><label for="labPackage">Agregar perfil guardado</label><div class="grid"><select id="labPackage"><option value="">Selecciona un perfil</option></select><button class="secondary" type="button" onclick="applyPackage('laboratorio')">Agregar perfil</button></div></div><div class="field"><label for="labNotes">Indicaciones de toma o notas</label><textarea id="labNotes" placeholder="Indicaciones pertinentes"></textarea></div><div class="actions"><button class="primary" type="submit">Guardar orden</button><button class="gold" type="button" onclick="printCurrent()">Imprimir orden</button><button class="secondary" type="button" onclick="resetDocument()">Limpiar formulario</button></div></form></div><div class="panel"><h2>Órdenes recientes</h2><div id="labList"></div></div></section>
+<section id="paquetes" class="view hidden"><h1>Productos, estudios y paquetes</h1><p class="muted">Registra cada producto una vez; sus datos se proponen automáticamente al hacer una receta.</p><div class="panel"><h2>Agregar o editar producto o estudio</h2><input type="hidden" id="catalogId"><div class="grid"><div class="field"><label for="catalogType">Tipo</label><select id="catalogType"><option value="producto">Producto para receta</option><option value="estudio">Estudio de laboratorio</option></select></div><div class="field"><label for="catalogName">Nombre</label><input id="catalogName" placeholder="Nombre del producto o estudio"></div></div><div id="productCatalogFields"><div class="grid"><div class="field"><label for="catalogPresentation">Presentación predeterminada</label><select id="catalogPresentation"><option>Cápsulas</option><option>Tabletas</option><option>Gotas</option><option>Solución líquida</option><option>Polvo</option><option>Sobre</option><option>Medida / scoop</option><option>Gramos</option><option>Otra</option></select></div><div class="field"><label for="catalogUnit">Unidad de medida</label><select id="catalogUnit"><option value="cápsulas">Cápsulas</option><option value="tabletas">Tabletas</option><option value="gotas">Gotas</option><option value="mL">mL</option><option value="sobres">Sobres</option><option value="medidas">Medidas</option><option value="gramos">Gramos</option><option value="mg">mg</option><option value="µg">µg</option><option value="unidades">Unidades</option></select></div></div><div class="grid"><div class="field"><label for="catalogRoute">Vía de administración</label><select id="catalogRoute"><option>Oral</option><option>Tópica</option><option>Sublingual</option><option>Otra (especificar en ficha)</option></select></div><div class="field"><label for="catalogPurchase">Dónde adquirirlo / dirección</label><input id="catalogPurchase" placeholder="Consultorio, farmacia, establecimiento o dirección"></div></div><div class="field"><label for="catalogPurchaseDetails">Detalles de compra (opcional)</label><input id="catalogPurchaseDetails" placeholder="Nombre del establecimiento, ubicación o contacto"></div><div class="field"><label for="catalogQuantityOptions">Cantidades disponibles para seleccionar (opcional)</label><input id="catalogQuantityOptions" placeholder="Ej. 1,2,3,5,10,15,30"><p class="hint">Separadas por comas. Si lo dejas vacío, se ofrecerá la lista general de cantidades.</p></div><h3>Cuadro educativo del producto</h3><div class="field"><label for="catalogWhat">¿Qué es el producto?</label><textarea id="catalogWhat" placeholder="Descripción general"></textarea></div><div class="field"><label for="catalogIndication">¿Para qué puede estar indicado?</label><textarea id="catalogIndication" placeholder="Usos posibles, según valoración profesional"></textarea></div><div class="field"><label for="catalogBenefits">Beneficios con respaldo científico</label><textarea id="catalogBenefits" placeholder="Beneficios respaldados; evitar promesas de resultados"></textarea></div><div class="field"><label for="catalogPrecautions">Precauciones, contraindicaciones e interacciones</label><textarea id="catalogPrecautions" placeholder="Precauciones específicas, interacciones y cuándo consultar"></textarea></div><div class="field"><label for="catalogSources">Fuentes o referencias (opcional)</label><textarea id="catalogSources" placeholder="Guías, ficha técnica o referencias verificables"></textarea></div></div><div class="actions"><button class="primary" onclick="addCatalogItem()">Guardar producto / estudio</button><button class="secondary" onclick="clearCatalogForm()">Limpiar campos</button></div><hr><h2>Catálogo actual</h2><div id="catalogList"></div></div><div class="panel"><h2>Crear paquete o perfil</h2><div class="grid"><div class="field"><label for="packageType">Tipo de paquete</label><select id="packageType"><option value="receta">Paquete para receta</option><option value="laboratorio">Perfil de laboratorio</option></select></div><div class="field"><label for="packageName">Nombre del paquete</label><input id="packageName" placeholder="Ej. Paquete de productos A"></div></div><div class="field"><label>Selecciona componentes</label><div id="packageChoices" class="checklist"></div></div><button class="primary" onclick="savePackage()">Guardar paquete</button><hr><h2>Paquetes guardados</h2><div id="packageList"></div></div></section>
+<section id="registro" class="view hidden"><h1>Registro de documentos</h1><p class="muted">Busca, edita y reimprime documentos guardados en este navegador.</p><div class="panel"><div class="grid"><div class="field"><label for="searchText">Buscar por nombre del paciente</label><input id="searchText" placeholder="Escribe para buscar"></div><div class="field"><label for="searchType">Tipo de documento</label><select id="searchType"><option value="todos">Todos</option><option value="receta">Recetas</option><option value="laboratorio">Órdenes de laboratorio</option></select></div></div><div id="registryList"></div></div></section>
+</main><div id="printArea" style="display:none"></div><footer>RECETAS-CLINICA · Herramienta de gestión documental</footer>
 <script>
-const STORAGE_KEY = 'recetasClinica_v1';
-const defaultCatalog = [
-  {id:'p1',type:'producto',name:'Vitamina B12'},
-  {id:'p2',type:'producto',name:'Magnesio'},
-  {id:'p3',type:'producto',name:'Calciferol'},
-  {id:'p4',type:'producto',name:'Complejo B'},
-  {id:'s1',type:'estudio',name:'Biometría hemática'},
-  {id:'s2',type:'estudio',name:'Química sanguínea'},
-  {id:'s3',type:'estudio',name:'Hemoglobina glucosilada (HbA1c)'},
-  {id:'s4',type:'estudio',name:'Perfil de lípidos'},
-  {id:'s5',type:'estudio',name:'Examen general de orina'}
-];
-let state = loadState();
-let currentPrint = null;
-
-function loadState() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (saved) return {
-      catalog: saved.catalog || defaultCatalog,
-      packages: saved.packages || [],
-      documents: saved.documents || []
-    };
-  } catch(e) {}
-  return {catalog:defaultCatalog.slice(),packages:[],documents:[]};
-}
-function persist() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  renderAll();
-}
-function uid() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2,7);
-}
-function escapeHTML(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-  })[c]);
-}
-function localDate() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-}
-function writtenDate(s) {
-  if (!s) return '';
-  const d = new Date(s+'T12:00:00');
-  return d.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
-}
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.toggle('hidden',v.id!==id));
-  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active',b.dataset.view===id));
-  renderAll();
-}
-document.querySelectorAll('.tab').forEach(b => b.addEventListener('click',()=>showView(b.dataset.view)));
-function newDocument(type) {
-  resetDocument();
-  showView(type==='receta'?'recetas':'laboratorio');
-  document.getElementById('docType').value=type;
-  document.getElementById('docDate').value=localDate();
-  document.getElementById('labDate').value=localDate();
-  renderAll();
-}
-function resetDocument() {
-  document.getElementById('documentForm').reset();
-  document.getElementById('labForm').reset();
-  document.getElementById('docId').value='';
-  document.getElementById('labId').value='';
-  document.getElementById('docType').value='receta';
-  document.getElementById('docDate').value=localDate();
-  document.getElementById('labDate').value=localDate();
-  document.getElementById('recipeText').value='';
-  document.getElementById('recipeNotes').value='';
-  document.getElementById('labNotes').value='';
-  renderAll();
-}
-function renderChoices(containerId,type,selected=[]) {
-  const el=document.getElementById(containerId);
-  const items=state.catalog.filter(x=>x.type===type);
-  el.innerHTML=items.length?items.map(x=>`
-    <label class="checkitem">
-      <input type="checkbox" value="${escapeHTML(x.id)}" ${selected.includes(x.id)?'checked':''}>
-      <span>${escapeHTML(x.name)}</span>
-    </label>`).join(''):'<p class="muted">No hay elementos en el catálogo. Agrégalos en Productos y paquetes.</p>';
-}
-function checkedIds(containerId) {
-  return [...document.querySelectorAll('#'+containerId+' input:checked')].map(x=>x.value);
-}
-function renderPackageSelect(selectId,type) {
-  const el=document.getElementById(selectId), old=el.value;
-  const list=state.packages.filter(p=>p.type===type);
-  el.innerHTML='<option value="">Selecciona un paquete</option>'+list.map(p=>`<option value="${escapeHTML(p.id)}">${escapeHTML(p.name)}</option>`).join('');
-  if(list.some(p=>p.id===old)) el.value=old;
-}
-function applyPackage(type) {
-  const select=document.getElementById(type==='receta'?'recipePackage':'labPackage');
-  const pack=state.packages.find(p=>p.id===select.value && p.type===type);
-  if(!pack) return alert('Selecciona un paquete guardado.');
-  const container=type==='receta'?'productChoices':'studyChoices';
-  const ids=type==='receta'?checkedIds(container):checkedIds(container);
-  renderChoices(container,type==='receta'?'producto':'estudio',[...new Set([...ids,...pack.items])]);
-}
-function addCatalogItem() {
-  const type=document.getElementById('catalogType').value;
-  const name=document.getElementById('catalogName').value.trim();
-  if(!name) return alert('Escribe el nombre primero.');
-  if(state.catalog.some(x=>x.type===type && x.name.toLowerCase()===name.toLowerCase())) return alert('Ese elemento ya existe.');
-  state.catalog.push({id:uid(),type,name});
-  document.getElementById('catalogName').value='';
-  persist();
-}
-function savePackage() {
-  const type=document.getElementById('packageType').value;
-  const name=document.getElementById('packageName').value.trim();
-  const items=checkedIds('packageChoices');
-  if(!name) return alert('Escribe el nombre del paquete.');
-  if(!items.length) return alert('Selecciona al menos un componente.');
-  state.packages.push({id:uid(),type,name,items});
-  document.getElementById('packageName').value='';
-  persist();
-}
-function removeCatalog(id) {
-  if(!confirm('¿Eliminar este elemento del catálogo?')) return;
-  state.catalog=state.catalog.filter(x=>x.id!==id);
-  persist();
-}
-function removePackage(id) {
-  if(!confirm('¿Eliminar este paquete?')) return;
-  state.packages=state.packages.filter(x=>x.id!==id);
-  persist();
-}
-function removeDocument(id) {
-  if(!confirm('¿Eliminar este documento del registro? Esta acción no se puede deshacer.')) return;
-  state.documents=state.documents.filter(x=>x.id!==id);
-  persist();
-}
-function catalogNames(ids) {
-  return ids.map(id=>state.catalog.find(x=>x.id===id)?.name || id);
-}
-function docFromForm(type) {
-  if(type==='receta') return {
-    id:document.getElementById('docId').value||uid(),type,
-    patient:document.getElementById('patient').value.trim(),
-    date:document.getElementById('docDate').value,
-    items:checkedIds('productChoices'),
-    text:document.getElementById('recipeText').value.trim(),
-    notes:document.getElementById('recipeNotes').value.trim()
-  };
-  return {
-    id:document.getElementById('labId').value||uid(),type,
-    patient:document.getElementById('labPatient').value.trim(),
-    date:document.getElementById('labDate').value,
-    items:checkedIds('studyChoices'),
-    text:document.getElementById('labNotes').value.trim(),
-    notes:''
-  };
-}
-document.getElementById('documentForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const doc=docFromForm('receta');
-  if(!doc.patient||!doc.date) return alert('Completa el nombre y la fecha.');
-  const index=state.documents.findIndex(x=>x.id===doc.id);
-  if(index>=0) state.documents[index]=doc; else state.documents.unshift(doc);
-  persist(); alert('Receta guardada.'); resetDocument();
-});
-document.getElementById('labForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const doc=docFromForm('laboratorio');
-  if(!doc.patient||!doc.date) return alert('Completa el nombre y la fecha.');
-  const index=state.documents.findIndex(x=>x.id===doc.id);
-  if(index>=0) state.documents[index]=doc; else state.documents.unshift(doc);
-  persist(); alert('Orden guardada.'); resetDocument();
-});
-function editDocument(id) {
-  const d=state.documents.find(x=>x.id===id);
-  if(!d) return;
-  resetDocument();
-  if(d.type==='receta') {
-    showView('recetas');
-    document.getElementById('docId').value=d.id;
-    document.getElementById('patient').value=d.patient;
-    document.getElementById('docDate').value=d.date;
-    document.getElementById('recipeText').value=d.text||'';
-    document.getElementById('recipeNotes').value=d.notes||'';
-    renderChoices('productChoices','producto',d.items||[]);
-  } else {
-    showView('laboratorio');
-    document.getElementById('labId').value=d.id;
-    document.getElementById('labPatient').value=d.patient;
-    document.getElementById('labDate').value=d.date;
-    document.getElementById('labNotes').value=d.text||'';
-    renderChoices('studyChoices','estudio',d.items||[]);
-  }
-}
-function preparePrint(d) {
-  const type=d.type==='receta'?'Receta':'Orden de laboratorio';
-  const itemNames=catalogNames(d.items||[]);
-  const details=d.type==='receta'?(d.text||''):(d.text||'');
-  document.getElementById('printArea').innerHTML=`
-    <h1>RECETAS-CLINICA</h1>
-    <p style="text-align:center">${type}</p>
-    <div class="printline"><strong>Paciente:</strong> ${escapeHTML(d.patient)}</div>
-    <div class="printline"><strong>Fecha:</strong> ${escapeHTML(writtenDate(d.date))}</div>
-    <div class="printline"><strong>${d.type==='receta'?'Productos':'Estudios solicitados'}:</strong><br>${itemNames.length?itemNames.map(escapeHTML).join('<br>'):'Sin elementos seleccionados'}</div>
-    ${details?`<div class="printline"><strong>Indicaciones:</strong><div class="printbody">${escapeHTML(details)}</div></div>`:''}
-    <div style="margin-top:55px;text-align:center">________________________________<br>Firma del profesional responsable</div>
-  `;
-}
-function printCurrent() {
-  const type=document.getElementById('docType').value;
-  const d=docFromForm(type);
-  if(type==='receta'?!d.patient:!d.patient) return alert('Escribe primero el nombre del paciente.');
-  preparePrint(d); window.print();
-}
-function printSaved(id) {
-  const d=state.documents.find(x=>x.id===id);
-  if(!d) return;
-  preparePrint(d); window.print();
-}
-function renderList(containerId,docs) {
-  const el=document.getElementById(containerId);
-  if(!docs.length) { el.innerHTML='<p class="muted">Todavía no hay documentos guardados.</p>'; return; }
-  el.innerHTML=docs.map(d=>`
-    <div class="item">
-      <div class="itemhead"><strong>${escapeHTML(d.patient)}</strong><span class="pill">${d.type==='receta'?'RECETA':'LABORATORIO'}</span></div>
-      <p class="muted">${escapeHTML(writtenDate(d.date))} · ${escapeHTML(catalogNames(d.items||[]).join(', ')||'Sin elementos')}</p>
-      <div class="actions">
-        <button class="secondary small" onclick="editDocument('${escapeHTML(d.id)}')">Editar</button>
-        <button class="gold small" onclick="printSaved('${escapeHTML(d.id)}')">Imprimir</button>
-        <button class="danger small" onclick="removeDocument('${escapeHTML(d.id)}')">Eliminar</button>
-      </div>
-    </div>`).join('');
-}
-function renderCatalog() {
-  const el=document.getElementById('catalogList');
-  el.innerHTML=state.catalog.map(x=>`<div class="item itemhead"><div><strong>${escapeHTML(x.name)}</strong><p class="muted">${x.type==='producto'?'Producto para receta':'Estudio de laboratorio'}</p></div><button class="danger small" onclick="removeCatalog('${escapeHTML(x.id)}')">Eliminar</button></div>`).join('')||'<p class="muted">Catálogo vacío.</p>';
-}
-function renderPackages() {
-  document.getElementById('packageList').innerHTML=state.packages.map(p=>`<div class="item itemhead"><div><strong>${escapeHTML(p.name)}</strong><p class="muted">${p.type==='receta'?'Paquete para receta':'Perfil de laboratorio'} · ${escapeHTML(catalogNames(p.items).join(', '))}</p></div><button class="danger small" onclick="removePackage('${escapeHTML(p.id)}')">Eliminar</button></div>`).join('')||'<p class="muted">Todavía no hay paquetes guardados.</p>';
-}
-function renderAll() {
-  renderChoices('productChoices','producto');
-  renderChoices('studyChoices','estudio');
-  renderChoices('packageChoices',document.getElementById('packageType').value==='receta'?'producto':'estudio');
-  renderPackageSelect('recipePackage','receta');
-  renderPackageSelect('labPackage','laboratorio');
-  renderCatalog(); renderPackages();
-  renderList('recipeList',state.documents.filter(d=>d.type==='receta'));
-  renderList('labList',state.documents.filter(d=>d.type==='laboratorio'));
-  const q=(document.getElementById('searchText').value||'').toLowerCase();
-  const type=document.getElementById('searchType').value;
-  renderList('registryList',state.documents.filter(d=>
-    d.patient.toLowerCase().includes(q)&&(type==='todos'||d.type===type)
-  ));
-  document.getElementById('countRecipes').textContent=state.documents.filter(d=>d.type==='receta').length;
-  document.getElementById('countLabs').textContent=state.documents.filter(d=>d.type==='laboratorio').length;
-  document.getElementById('countPackages').textContent=state.packages.length;
-}
-document.getElementById('searchText').addEventListener('input',renderAll);
-document.getElementById('searchType').addEventListener('change',renderAll);
-document.getElementById('packageType').addEventListener('change',()=>renderChoices('packageChoices',document.getElementById('packageType').value==='receta'?'producto':'estudio'));
-document.getElementById('catalogType').addEventListener('change',renderAll);
-document.getElementById('docDate').value=localDate();
-document.getElementById('labDate').value=localDate();
-renderAll();
-</script>
-</body>
-</html>
+const STORAGE_KEY='recetasClinica_v1';
+const defaultCatalog=[
+{id:'p1',type:'producto',name:'Vitamina B12',presentation:'Cápsulas',unit:'cápsulas',route:'Oral',purchase:'',purchaseDetails:'',quantityOptions:'',what:'La vitamina B12 es una vitamina esencial que participa en la formación de glóbulos rojos, la síntesis de ADN y el funcionamiento neurológico.',indication:'Puede indicarse para prevenir o tratar una deficiencia de vitamina B12, según la evaluación clínica y la causa.',benefits:'Corregir una deficiencia puede ayudar a prevenir o tratar alteraciones hematológicas y neurológicas relacionadas con ella. El beneficio depende de la causa y del estado de la persona.',precautions:'La dosis y la vía dependen de la presentación, la causa de la deficiencia y la valoración profesional. No sustituye la investigación de síntomas persistentes. Revisar posibles interacciones y controles según el caso.',sources:'Ficha técnica del producto y guías clínicas aplicables; verificar la referencia específica antes de entregar.'},
+{id:'p2',type:'producto',name:'Magnesio',presentation:'Cápsulas',unit:'cápsulas',route:'Oral',purchase:'',purchaseDetails:'',quantityOptions:'',what:'El magnesio es un mineral esencial que participa en funciones musculares y nerviosas, metabolismo energético y salud ósea.',indication:'Puede utilizarse para cubrir necesidades nutricionales o tratar una deficiencia, según evaluación y contexto clínico.',benefits:'La corrección de una ingesta insuficiente o una deficiencia puede contribuir a las funciones fisiológicas normales. No debe prometerse un efecto terapéutico específico sin evidencia para la indicación concreta.',precautions:'Puede causar diarrea o molestias digestivas. En enfermedad renal existe riesgo de acumulación; requiere valoración profesional. Puede interactuar con algunos antibióticos, bisfosfonatos y otros medicamentos; confirmar separación horaria con el profesional o farmacéutico. Distinguir el magnesio elemental del peso total de la sal.',sources:'Ficha técnica y fuentes clínicas/nutricionales verificables según la formulación.'},
+{id:'p3',type:'producto',name:'Calciferol',presentation:'Cápsulas',unit:'cápsulas',route:'Oral',purchase:'',purchaseDetails:'',quantityOptions:'',what:'El calciferol es una forma de vitamina D; la presentación concreta debe confirmarse en la etiqueta del producto.',indication:'Puede indicarse para prevenir o corregir deficiencia de vitamina D cuando esté justificado.',benefits:'La vitamina D participa en la absorción de calcio y en la salud ósea. Los beneficios dependen del estado nutricional, la dosis y la indicación.',precautions:'Evitar dosis excesivas sin supervisión. El exceso puede elevar el calcio sanguíneo y causar daño. Revisar enfermedad renal, trastornos del calcio e interacciones con medicamentos. Confirmar si el producto es D2 o D3 y su concentración.',sources:'Ficha técnica específica del producto y guías clínicas pertinentes.'},
+{id:'p4',type:'producto',name:'Complejo B',presentation:'Cápsulas',unit:'cápsulas',route:'Oral',purchase:'',purchaseDetails:'',quantityOptions:'',what:'Producto que combina varias vitaminas del grupo B; la composición y cantidad de cada vitamina varían según la marca.',indication:'Puede indicarse para cubrir necesidades nutricionales o tratar deficiencias específicas según valoración.',benefits:'Las vitaminas B participan en distintas funciones metabólicas. El beneficio de la suplementación depende de la ingesta, la deficiencia y la composición del producto.',precautions:'Revisar la etiqueta y las cantidades por porción. Algunas formulaciones aportan dosis elevadas; el exceso crónico de vitamina B6 puede producir neuropatía. Comprobar interacciones y no duplicar suplementos sin revisión.',sources:'Etiqueta/ficha técnica exacta y referencias clínicas verificables.'},
+{id:'s1',type:'estudio',name:'Biometría hemática'},{id:'s2',type:'estudio',name:'Química sanguínea'},{id:'s3',type:'estudio',name:'Hemoglobina glucosilada (HbA1c)'},{id:'s4',type:'estudio',name:'Perfil de lípidos'},{id:'s5',type:'estudio',name:'Examen general de orina'}];
+const quantityBase=[1,2,3,4,5,6,7,8,9,10,12,15,20,22,25,30,35,40,45,50,55,60,65,80,85,100,150,200];
+const moments=['En la mañana','Antes del desayuno','Antes de la comida','Antes de la cena','Antes del desayuno, la comida y la cena','Después del desayuno','Después de la comida','Después de la cena','Después del desayuno, la comida y la cena','En ayunas','En la tarde','En la noche','Antes de dormir','Antes de comer','Después de desayunar','Después de comer','Después de cenar','Con los alimentos','Mañana, tarde y noche','Desayuno, comida y cena'];
+let state=loadState();let editingCatalogId='';
+function loadState(){try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY));if(s)return{catalog:(s.catalog||defaultCatalog).map(x=>({...((defaultCatalog.find(d=>d.id===x.id))||{}),...x})),packages:s.packages||[],documents:s.documents||[]}}catch(e){}return{catalog:defaultCatalog.map(x=>({...x})),packages:[],documents:[]}}
+function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));renderAll()}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function escapeHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function localDate(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function writtenDate(s){if(!s)return'';return new Date(s+'T12:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'})}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('hidden',v.id!==id));document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.view===id));renderAll()}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
+function newDocument(type){resetDocument();showView(type==='receta'?'recetas':'laboratorio');document.getElementById('docType').value=type;document.getElementById('docDate').value=localDate();document.getElementById('labDate').value=localDate()}
+function resetDocument(){document.getElementById('documentForm').reset();document.getElementById('labForm').reset();document.getElementById('docId').value='';document.getElementById('labId').value='';document.getElementById('docType').value='receta';document.getElementById('docDate').value=localDate();document.getElementById('labDate').value=localDate();document.getElementById('recipeText').value='';document.getElementById('recipeNotes').value='';document.getElementById('labNotes').value='';renderAll()}
+function renderChoices(cid,type,selected=[]){const el=document.getElementById(cid),items=state.catalog.filter(x=>x.type===type);el.innerHTML=items.length?items.map(x=>`<label class="checkitem"><input type="checkbox" value="${escapeHTML(x.id)}" ${selected.includes(x.id)?'checked':''} onchange="renderPrescriptionEditors()"><span>${escapeHTML(x.name)}</span></label>`).join(''):'<p class="muted">No hay elementos en el catálogo. Agrégalos en Productos y paquetes.</p>';if(cid==='productChoices')renderPrescriptionEditors()}
+function checkedIds(cid){return [...document.querySelectorAll('#'+cid+' input:checked')].map(x=>x.value)}
+function renderPackageSelect(sid,type){const el=document.getElementById(sid),old=el.value,list=state.packages.filter(p=>p.type===type);el.innerHTML='<option value="">Selecciona un paquete</option>'+list.map(p=>`<option value="${escapeHTML(p.id)}">${escapeHTML(p.name)}</option>`).join('');if(list.some(p=>p.id===old))el.value=old}
+function applyPackage(type){const sel=document.getElementById(type==='receta'?'recipePackage':'labPackage'),pack=state.packages.find(p=>p.id===sel.value&&p.type===type);if(!pack)return alert('Selecciona un paquete guardado.');const cid=type==='receta'?'productChoices':'studyChoices';renderChoices(cid,type==='receta'?'producto':'estudio',[...new Set([...checkedIds(cid),...pack.items])])}
+function catalogFormValue(){return {id:document.getElementById('catalogId').value||uid(),type:document.getElementById('catalogType').value,name:document.getElementById('catalogName').value.trim(),presentation:document.getElementById('catalogPresentation').value,unit:document.getElementById('catalogUnit').value,route:document.getElementById('catalogRoute').value,purchase:document.getElementById('catalogPurchase').value.trim(),purchaseDetails:document.getElementById('catalogPurchaseDetails').value.trim(),quantityOptions:document.getElementById('catalogQuantityOptions').value.trim(),what:document.getElementById('catalogWhat').value.trim(),indication:document.getElementById('catalogIndication').value.trim(),benefits:document.getElementById('catalogBenefits').value.trim(),precautions:document.getElementById('catalogPrecautions').value.trim(),sources:document.getElementById('catalogSources').value.trim()}}
+function addCatalogItem(){const x=catalogFormValue();if(!x.name)return alert('Escribe el nombre primero.');const duplicate=state.catalog.some(y=>y.id!==x.id&&y.type===x.type&&y.name.toLowerCase()===x.name.toLowerCase());if(duplicate)return alert('Ese elemento ya existe.');const i=state.catalog.findIndex(y=>y.id===x.id);if(i>=0)state.catalog[i]=x;else state.catalog.push(x);clearCatalogForm();persist();alert('Catálogo guardado.')}
+function clearCatalogForm(){document.getElementById('catalogId').value='';['catalogName','catalogPurchase','catalogPurchaseDetails','catalogQuantityOptions','catalogWhat','catalogIndication','catalogBenefits','catalogPrecautions','catalogSources'].forEach(id=>document.getElementById(id).value='');document.getElementById('catalogType').value='producto';document.getElementById('catalogPresentation').value='Cápsulas';document.getElementById('catalogUnit').value='cápsulas';document.getElementById('catalogRoute').value='Oral';toggleCatalogFields()}
+function editCatalog(id){const x=state.catalog.find(y=>y.id===id);if(!x)return;document.getElementById('catalogId').value=x.id;document.getElementById('catalogType').value=x.type;document.getElementById('catalogName').value=x.name;document.getElementById('catalogPresentation').value=x.presentation||'Cápsulas';document.getElementById('catalogUnit').value=x.unit||'cápsulas';document.getElementById('catalogRoute').value=x.route||'Oral';document.getElementById('catalogPurchase').value=x.purchase||'';document.getElementById('catalogPurchaseDetails').value=x.purchaseDetails||'';document.getElementById('catalogQuantityOptions').value=x.quantityOptions||'';document.getElementById('catalogWhat').value=x.what||'';document.getElementById('catalogIndication').value=x.indication||'';document.getElementById('catalogBenefits').value=x.benefits||'';document.getElementById('catalogPrecautions').value=x.precautions||'';document.getElementById('catalogSources').value=x.sources||'';toggleCatalogFields();document.getElementById('catalogName').scrollIntoView({behavior:'smooth',block:'center'})}
+function toggleCatalogFields(){document.getElementById('productCatalogFields').classList.toggle('hidden',document.getElementById('catalogType').value!=='producto')}
+function savePackage(){const type=document.getElementById('packageType').value,name=document.getElementById('packageName').value.trim(),items=checkedIds('packageChoices');if(!name)return alert('Escribe el nombre del paquete.');if(!items.length)return alert('Selecciona al menos un componente.');state.packages.push({id:uid(),type,name,items});document.getElementById('packageName').value='';persist()}
+function removeCatalog(id){if(!confirm('¿Eliminar este elemento del catálogo?'))return;state.catalog=state.catalog.filter(x=>x.id!==id);persist()}
+function removePackage(id){if(!confirm('¿Eliminar este paquete?'))return;state.packages=state.packages.filter(x=>x.id!==id);persist()}
+function removeDocument(id){if(!confirm('¿Eliminar este documento del registro? Esta acción no se puede deshacer.'))return;state.documents=state.documents.filter(x=>x.id!==id);persist()}
+function catalogNames(ids){return ids.map(id=>state.catalog.find(x=>x.id===id)?.name||id)}
+function selectedInstructions(){const result={};document.querySelectorAll('.product-rx').forEach(el=>{const id=el.dataset.product;const val=k=>el.querySelector(`[data-field="${k}"]`)?.value||'';result[id]={quantity:val('quantity'),unit:val('unit'),frequency:val('frequency'),period:val('period'),duration:val('duration'),durationUnit:val('durationUnit'),moment:val('moment'),route:val('route'),custom:val('custom')}});return result}
+function getQtyOptions(p){let a=(p.quantityOptions||'').split(',').map(x=>x.trim()).filter(x=>/^\d+(\.\d+)?$/.test(x));return a.length?a:quantityBase.map(String)}
+function optionsHtml(arr,chosen){return arr.map(x=>`<option ${String(x)===String(chosen)?'selected':''} value="${escapeHTML(x)}">${escapeHTML(x)}</option>`).join('')}
+function renderPrescriptionEditors(saved={}){const ids=checkedIds('productChoices'),el=document.getElementById('prescriptionEditors');if(!el)return;el.innerHTML=ids.map(id=>{const p=state.catalog.find(x=>x.id===id);if(!p)return'';const s=saved[id]||{};const qtys=getQtyOptions(p),unit=s.unit||p.unit||'cápsulas';return `<div class="product-rx" data-product="${escapeHTML(id)}"><h3>${escapeHTML(p.name)}</h3><p class="muted">Presentación: ${escapeHTML(p.presentation||'No especificada')} · Vía predeterminada: ${escapeHTML(p.route||'Oral')} · Adquisición: ${escapeHTML([p.purchase,p.purchaseDetails].filter(Boolean).join(' · ')||'No registrada')}</p><div class="grid3"><div class="field"><label>Cantidad por toma</label><select data-field="quantity">${optionsHtml(qtys,s.quantity||qtys[0])}</select></div><div class="field"><label>Unidad</label><select data-field="unit">${optionsHtml(['cápsulas','tabletas','gotas','mL','sobres','medidas','gramos','mg','µg','unidades'],unit)}</select></div><div class="field"><label>Vía</label><select data-field="route">${optionsHtml(['Oral','Sublingual','Tópica','Otra'],s.route||p.route||'Oral')}</select></div><div class="field"><label>Frecuencia (número)</label><select data-field="frequency">${optionsHtml(quantityBase,s.frequency||1)}</select></div><div class="field"><label>Periodo</label><select data-field="period">${optionsHtml(['al día','por semana','por mes'],s.period||'al día')}</select></div><div class="field"><label>Duración (número)</label><select data-field="duration">${optionsHtml(quantityBase,s.duration||12)}</select></div><div class="field"><label>Unidad de duración</label><select data-field="durationUnit">${optionsHtml(['semanas','días','meses'],s.durationUnit||'semanas')}</select></div><div class="field"><label>Momento de administración</label><select data-field="moment"><option value="">Selecciona momento</option>${optionsHtml(moments,s.moment||'')}</select></div></div><div class="field"><label>Indicación adicional específica (opcional)</label><input data-field="custom" value="${escapeHTML(s.custom||'')}" placeholder="Solo si corresponde y está autorizada"></div><p class="hint">Revisa la cantidad, frecuencia, unidad y duración para este paciente antes de guardar o imprimir.</p></div>`}).join('')||'<p class="muted">Selecciona uno o más productos para indicar sus instrucciones.</p>'}
+function instructionText(p,s){if(!s)return'';let q=`Tomar ${s.quantity||''} ${s.unit||p.unit||''}`.trim();let freq=`${s.frequency||1} ${s.period||'al día'}`;if((s.frequency||'1')==='1'&&(s.period||'al día')==='al día')freq='una vez al día';let line=`${q}, ${freq}`;if(s.moment)line+=`, ${s.moment.toLowerCase()}`;line+=`, durante ${s.duration||12} ${s.durationUnit||'semanas'}`;line+=`, por vía ${String(s.route||p.route||'Oral').toLowerCase()}.`;if(s.custom)line+=' '+s.custom;return line}
+function docFromForm(type){if(type==='receta'){const ids=checkedIds('productChoices'),ins=selectedInstructions();return{id:document.getElementById('docId').value||uid(),type,patient:document.getElementById('patient').value.trim(),date:document.getElementById('docDate').value,items:ids,text:document.getElementById('recipeText').value.trim(),notes:document.getElementById('recipeNotes').value.trim(),instructions:ins,productSnapshots:ids.map(id=>({...state.catalog.find(x=>x.id===id)}))}}return{id:document.getElementById('labId').value||uid(),type,patient:document.getElementById('labPatient').value.trim(),date:document.getElementById('labDate').value,items:checkedIds('studyChoices'),text:document.getElementById('labNotes').value.trim(),notes:''}}
+document.getElementById('documentForm').addEventListener('submit',e=>{e.preventDefault();const d=docFromForm('receta');if(!d.patient||!d.date)return alert('Completa el nombre y la fecha.');const i=state.documents.findIndex(x=>x.id===d.id);if(i>=0)state.documents[i]=d;else state.documents.unshift(d);persist();alert('Receta guardada.');resetDocument()});
+document.getElementById('labForm').addEventListener('submit',e=>{e.preventDefault();const d=docFromForm('laboratorio');if(!d.patient||!d.date)return alert('Completa el nombre y la fecha.');const i=state.documents.findIndex(x=>x.id===d.id);if(i>=0)state.documents[i]=d;else state.documents.unshift(d);persist();alert('Orden guardada.');resetDocument()});
+function editDocument(id){const d=state.documents.find(x=>x.id===id);if(!d)return;resetDocument();if(d.type==='receta'){showView('recetas');document.getElementById('docId').value=d.id;document.getElementById('patient').value=d.patient;document.getElementById('docDate').value=d.date;document.getElementById('recipeText').value=d.text||'';document.getElementById('recipeNotes').value=d.notes||'';renderChoices('productChoices','producto',d.items||[]);renderPrescriptionEditors(d.instructions||{})}else{showView('laboratorio');document.getElementById('labId').value=d.id;document.getElementById('labPatient').value=d.patient;document.getElementById('labDate').value=d.date;document.getElementById('labNotes').value=d.text||'';renderChoices('studyChoices','estudio',d.items||[])}}
+function educationSheet(p){return `<section class="educational"><h2>${escapeHTML(p.name||'Producto')} · Información educativa para el paciente</h2><p style="font-size:10pt;color:#555">Material informativo general. No sustituye la valoración profesional ni las indicaciones individualizadas.</p><div class="education-grid"><div class="education-box"><h4>¿QUÉ ES?</h4><p>${escapeHTML(p.what||'Información específica pendiente de completar en el catálogo. Consulte la etiqueta y al profesional responsable.')}</p></div><div class="education-box"><h4>¿PARA QUÉ PUEDE ESTAR INDICADO?</h4><p>${escapeHTML(p.indication||'La indicación debe establecerse individualmente por el profesional responsable.')}</p></div><div class="education-box"><h4>BENEFICIOS CON RESPALDO CIENTÍFICO</h4><p>${escapeHTML(p.benefits||'No se ha añadido una descripción específica. No se deben asumir beneficios no documentados.')}</p></div><div class="education-box"><h4>PRECAUCIONES, CONTRAINDICACIONES E INTERACCIONES</h4><p>${escapeHTML(p.precautions||'Consulte con el profesional responsable sobre alergias, enfermedades, embarazo, lactancia y medicamentos concomitantes.')}</p></div></div>${p.sources?`<p style="font-size:9pt;margin-top:8px"><strong>Referencias registradas:</strong> ${escapeHTML(p.sources)}</p>`:''}<p style="font-size:9pt;margin-top:8px">Si presenta una reacción inesperada, suspenda la automedicación y consulte al profesional responsable; ante una reacción grave, busque atención urgente.</p></section>`}
+function preparePrint(d){const type=d.type==='receta'?'Receta':'Orden de laboratorio';let html=`<h1>RECETAS-CLINICA</h1><p style="text-align:center">${type}</p><div class="printline"><strong>Paciente:</strong> ${escapeHTML(d.patient)}</div><div class="printline"><strong>Fecha:</strong> ${escapeHTML(writtenDate(d.date))}</div>`;if(d.type==='receta'){const products=(d.productSnapshots&&d.productSnapshots.length?d.productSnapshots:(d.items||[]).map(id=>state.catalog.find(p=>p.id===id)||{id,name:id}));html+=`<div class="printline"><strong>Receta e indicaciones</strong></div>`;products.forEach(p=>{const s=(d.instructions||{})[p.id];html+=`<div class="printline"><strong>${escapeHTML(p.name)}</strong><br>${escapeHTML(instructionText(p,s)||'Indicaciones individualizadas pendientes de completar.')}${p.purchase?`<br><span style="font-size:10pt">Adquisición registrada: ${escapeHTML(p.purchase)} ${escapeHTML(p.purchaseDetails||'')}</span>`:''}</div>`});if(d.text)html+=`<div class="printline"><strong>Indicaciones adicionales:</strong><div class="printbody">${escapeHTML(d.text)}</div></div>`;html+=`<div style="margin-top:35px;text-align:center">________________________________<br>Firma del profesional responsable</div>`;if(products.length)html+=`<div class="page-break"><h1>Información educativa de los productos</h1><p style="text-align:center">Paciente: ${escapeHTML(d.patient)} · ${escapeHTML(writtenDate(d.date))}</p>${products.map(educationSheet).join('')}</div>`}else{const names=catalogNames(d.items||[]);html+=`<div class="printline"><strong>Estudios solicitados:</strong><br>${names.length?names.map(escapeHTML).join('<br>'):'Sin elementos seleccionados'}</div>`;if(d.text)html+=`<div class="printline"><strong>Indicaciones:</strong><div class="printbody">${escapeHTML(d.text)}</div></div>`;html+=`<div style="margin-top:45px;text-align:center">________________________________<br>Firma del profesional responsable</div>`}document.getElementById('printArea').innerHTML=html}
+function printCurrent(){const type=document.getElementById('docType').value,d=docFromForm(type);if(!d.patient)return alert('Escribe primero el nombre del paciente.');if(type==='receta'&&!d.items.length)return alert('Selecciona al menos un producto para la receta.');preparePrint(d);window.print()}
+function printSaved(id){const d=state.documents.find(x=>x.id===id);if(!d)return;preparePrint(d);window.print()}
+function renderList(cid,docs){const el=document.getElementById(cid);if(!docs.length){el.innerHTML='<p class="muted">Todavía no hay documentos guardados.</p>';return}el.innerHTML=docs.map(d=>`<div class="item"><div class="itemhead"><strong>${escapeHTML(d.patient)}</strong><span class="pill">${d.type==='receta'?'RECETA':'LABORATORIO'}</span></div><p class="muted">${escapeHTML(writtenDate(d.date))} · ${escapeHTML(catalogNames(d.items||[]).join(', ')||'Sin elementos')}</p><div class="actions"><button class="secondary small" onclick="editDocument('${escapeHTML(d.id)}')">Editar</button><button class="gold small" onclick="printSaved('${escapeHTML(d.id)}')">Imprimir</button><button class="danger small" onclick="removeDocument('${escapeHTML(d.id)}')">Eliminar</button></div></div>`).join('')}
+function renderCatalog(){const el=document.getElementById('catalogList');el.innerHTML=state.catalog.map(x=>`<div class="item"><div class="itemhead"><div><strong>${escapeHTML(x.name)}</strong><p class="muted">${x.type==='producto'?'Producto':'Estudio de laboratorio'}${x.type==='producto'?' · '+escapeHTML(x.presentation||'Presentación pendiente')+' · '+escapeHTML(x.unit||'Unidad pendiente')+' · Vía '+escapeHTML(x.route||'Oral'):''}</p>${x.type==='producto'&&x.purchase?`<p class="muted">Adquisición: ${escapeHTML(x.purchase)} ${escapeHTML(x.purchaseDetails||'')}</p>`:''}</div><div class="actions"><button class="secondary small" onclick="editCatalog('${escapeHTML(x.id)}')">Editar</button><button class="danger small" onclick="removeCatalog('${escapeHTML(x.id)}')">Eliminar</button></div></div></div>`).join('')||'<p class="muted">Catálogo vacío.</p>'}
+function renderPackages(){document.getElementById('packageList').innerHTML=state.packages.map(p=>`<div class="item itemhead"><div><strong>${escapeHTML(p.name)}</strong><p class="muted">${p.type==='receta'?'Paquete para receta':'Perfil de laboratorio'} · ${escapeHTML(catalogNames(p.items).join(', '))}</p></div><button class="danger small" onclick="removePackage('${escapeHTML(p.id)}')">Eliminar</button></div>`).join('')||'<p class="muted">Todavía no hay paquetes guardados.</p>'}
+function renderAll(){renderChoices('productChoices','producto',checkedIdsSafe('productChoices'));renderChoices('studyChoices','estudio',checkedIdsSafe('studyChoices'));renderChoices('packageChoices',document.getElementById('packageType').value==='receta'?'producto':'estudio',checkedIdsSafe('packageChoices'));renderPackageSelect('recipePackage','receta');renderPackageSelect('labPackage','laboratorio');renderCatalog();renderPackages();renderList('recipeList',state.documents.filter(d=>d.type==='receta'));renderList('labList',state.documents.filter(d=>d.type==='laboratorio'));const q=(document.getElementById('searchText').value||'').toLowerCase(),type=document.getElementById('searchType').value;renderList('registryList',state.documents.filter(d=>d.patient.toLowerCase().includes(q)&&(type==='todos'||d.type===type)));document.getElementById('countRecipes').textContent=state.documents.filter(d=>d.type==='receta').length;document.getElementById('countLabs').textContent=state.documents.filter(d=>d.type==='laboratorio').length;document.getElementById('countPackages').textContent=state.packages.length;renderPrescriptionEditors()}
+function checkedIdsSafe(cid){const el=document.getElementById(cid);return el?[...el.querySelectorAll('input:checked')].map(x=>x.value):[]}
+document.getElementById('searchText').addEventListener('input',renderAll);document.getElementById('searchType').addEventListener('change',renderAll);document.getElementById('packageType').addEventListener('change',()=>renderChoices('packageChoices',document.getElementById('packageType').value==='receta'?'producto':'estudio'));document.getElementById('catalogType').addEventListener('change',toggleCatalogFields);document.getElementById('docDate').value=localDate();document.getElementById('labDate').value=localDate();toggleCatalogFields();renderAll();
+</script></body></html>
